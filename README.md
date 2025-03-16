@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mumbai Mitra 🚀
 
-## Getting Started
+Mumbai Mitra is a real-time safety and awareness platform providing **hyper-local AQI & weather updates**, **health advisories**, and **AI-generated voice alerts** in **English & Mumbaiya Hindi**.
 
-First, run the development server:
+## 🌟 Features
+- **📡 Real-Time Alerts:** Instant AQI and weather updates for Mumbai locations.
+- **🌍 MongoDB Data Storage:** Efficient storage for AQI, weather, and generated reports.
+- **📢 AI Text-to-Speech (TTS):** Converts reports into **realistic voice alerts**.
+- **📊 Data-Driven Reports:** Daily insights on air quality, weather conditions, and health advisories.
+- **🔗 RESTful API:** Provides structured JSON responses for seamless integration.
 
+---
+
+## 🛠 Tech Stack
+- **Backend:** Python (Flask)
+- **Database:** MongoDB
+- **Data Processing:** Pandas, NumPy
+- **Text-to-Speech:** gTTS (Google TTS)
+- **API Hosting:** Flask-based server
+
+---
+
+## 🚀 Installation Guide
+
+### 1️⃣ Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-repo/MumbaiMitra.git
+cd MumbaiMitra
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2️⃣ Create a Virtual Environment
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3️⃣ Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4️⃣ Set Up MongoDB
+Ensure you have MongoDB running and update `MONGO_URI` in `config.py`.
 
-## Learn More
+### 5️⃣ Run the Application
+```bash
+python aqiweathertts.py
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📡 API Endpoints
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 📝 Store AQI Data
+```http
+POST /store/aqi
+```
+- **Body:** `{ "location": "Andheri", "aqi": 120, "timestamp": "2025-03-16T14:30:00Z" }`
+- **Response:** `{ "message": "AQI data stored successfully" }`
 
-## Deploy on Vercel
+### 📝 Store Weather Data
+```http
+POST /store/weather
+```
+- **Body:** `{ "location": "Thane", "temperature": 32, "humidity": 65, "timestamp": "2025-03-16T14:30:00Z" }`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 📊 Get Latest Report
+```http
+GET /report/latest/{location}
+```
+- **Response:** `{ "location": "Bandra", "aqi": 150, "weather": {"temp": 30, "humidity": 70} }`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🎙 Generate TTS Report
+```http
+GET /tts/{location}
+```
+- **Response:** `{ "message": "TTS file generated", "file_url": "audio/mumbai_bandra.mp3" }`
+
+---
+
+## 🤝 Contributing
+Want to improve Mumbai Mitra? Feel free to fork and submit a PR!
+
+---
+
+💡 *Stay Safe, Stay Informed with Mumbai Mitra!* 🚀
+
